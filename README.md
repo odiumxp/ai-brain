@@ -588,28 +588,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🎉 What's Next?
-
-### Planned Features
-- [ ] Img2img and inpainting support
-- [ ] ControlNet integration
-- [ ] LoRA model support
-- [ ] Voice input/output
-- [ ] Mobile app (React Native)
-- [ ] Export conversations to PDF
-- [ ] Dark mode
-- [ ] Multi-language support
-- [ ] Integration with Google Calendar
-- [ ] Collaborative AI (shared with family/team)
-- [ ] Vector search with pgvector
-- [ ] Analytics dashboard with charts
-- [ ] Memory visualization (mind maps)
-
-### Want to Help?
-Check out our [Contributing Guidelines](#contributing) and pick an issue to work on!
-
----
-
 <div align="center">
 
 **Made with ❤️ and 🧠**

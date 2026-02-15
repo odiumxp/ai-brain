@@ -20,6 +20,7 @@ Quick reference for all documentation files in AI Brain.
 
 ### For Developers:
 - **TECHNICAL_SD_INTEGRATION.md** - Architecture & API details (564 lines)
+- **ARCHITECTURE_VISUAL.md** - Visual diagrams of the system (725 lines) ⭐
 - **CONTRIBUTING.md** - How to contribute to the project (117 lines)
 
 ### Project Info:
@@ -37,10 +38,12 @@ ai-brain/
 ├── README.md                        📖 Complete documentation
 ├── SETUP_STABLE_DIFFUSION.md       🎨 Image generation setup
 ├── TECHNICAL_SD_INTEGRATION.md     🔧 Developer guide
+├── ARCHITECTURE_VISUAL.md          📊 System diagrams
 ├── CONTRIBUTING.md                  🤝 How to contribute
 ├── PROJECT-COMPLETE.md              ✅ Feature checklist
 ├── CHANGELOG.md                     📝 Version history
 ├── PGVECTOR-OPTIONS.md              🔍 Optional: Vector search
+├── DOCUMENTATION_GUIDE.md           📚 This file
 └── LICENSE                          ⚖️  MIT License
 ```
 
@@ -58,6 +61,7 @@ ai-brain/
 → **SETUP_STABLE_DIFFUSION.md** (30 minutes)
 
 ### "I want to understand the architecture"
+→ **ARCHITECTURE_VISUAL.md** (20 minutes)
 → **TECHNICAL_SD_INTEGRATION.md** (15 minutes)
 
 ### "I want to contribute code"
@@ -73,8 +77,8 @@ ai-brain/
 
 ## 📊 Documentation Stats
 
-**Total Lines:** 2,447 lines of documentation
-**Total Files:** 9 files
+**Total Lines:** 3,172 lines of documentation
+**Total Files:** 11 files
 **Coverage:** Complete (setup, usage, architecture, contribution)
 **Quality:** Production-ready
 
@@ -121,5 +125,4 @@ ai-brain/
 
 ---
 
-**Last Updated:** 2026-02-15
 **Status:** Complete & Production-Ready ✅
