@@ -1,6 +1,6 @@
 # 🧠 AI Brain - Persistent Memory AI with Evolving Personality
 
-A sophisticated AI application featuring **persistent memory**, **evolving personality**, **multiple personas**, and **advanced learning capabilities**. Built with GPT-4, React, Node.js, and PostgreSQL.
+A sophisticated AI application featuring **persistent memory**, **evolving personality**, **multiple personas**, **AI-powered image generation**, and **advanced learning capabilities**. Built with GPT-4, React, Node.js, PostgreSQL, and Stable Diffusion.
 
 ![AI Brain Dashboard](https://img.shields.io/badge/Status-Production%20Ready-success)
 ![License](https://img.shields.io/badge/License-MIT-blue)
@@ -15,6 +15,19 @@ A sophisticated AI application featuring **persistent memory**, **evolving perso
 - **Create custom personas** with unique system prompts and behavior
 - **Separate memory banks** - Each persona maintains its own conversation history
 - **Seamless switching** - Change personalities mid-conversation
+
+### 🎨 AI Image Generation (Stable Diffusion Integration)
+- **Automatic Model Selection** - AI chooses the best model based on your prompt
+  - **Anime/Manga** → NovaAnimeXL or WaiIllustrious models
+  - **Realistic/Photographic** → JuggernautXL model
+- **Smart Quality Tiers** - Automatic selection based on keywords
+  - **SDXL** (High Quality) - For "hyper detail", "8k", "masterpiece"
+  - **SD 1.5** (Fast) - For "quick", "draft", "simple"
+  - **Turbo** (Ultra Fast) - For "instant", "turbo"
+- **Intelligent Dimensions** - Understands aspect ratios
+  - Exact dimensions: "1024x768"
+  - Keywords: "portrait", "landscape", "square", "ultrawide", "banner"
+- **Natural Language Prompts** - Just describe what you want!
 
 ### 🧠 Persistent Memory System
 - **Never forgets** - Every conversation is stored with vector embeddings
@@ -58,6 +71,7 @@ A sophisticated AI application featuring **persistent memory**, **evolving perso
 - **Node.js** 18+ ([Download](https://nodejs.org/))
 - **PostgreSQL** 18+ ([Download](https://www.postgresql.org/download/))
 - **OpenAI API Key** ([Get one here](https://platform.openai.com/api-keys))
+- **Stable Diffusion Forge** (Optional - for image generation) ([Download](https://github.com/lllyasviel/stable-diffusion-webui-forge))
 
 ### Installation
 
@@ -113,6 +127,9 @@ DB_PASSWORD=your_postgres_password
 # OpenAI API Key (Required)
 OPENAI_API_KEY=sk-your-openai-api-key-here
 
+# Stable Diffusion (Optional - for image generation)
+SD_API_URL=http://localhost:7860
+
 # Server Configuration
 PORT=3000
 NODE_ENV=development
@@ -123,17 +140,26 @@ ENABLE_CRON_JOBS=true
 
 **⚠️ Important:** Replace `your_postgres_password` and `sk-your-openai-api-key-here` with your actual credentials.
 
-#### 4. Initialize Database Tables
+#### 4. Set Up Stable Diffusion (Optional)
 
-The database tables will be created automatically when you first run the backend. The app includes:
+**For Image Generation:**
 
-- `users` - User accounts
-- `episodic_memory` - Conversation history with embeddings
-- `personality_state` - AI personality traits
-- `ai_personas` - Multiple AI personalities
-- `learning_items` - Quiz questions and flashcards
-- `study_sessions` - Learning progress tracking
-- And more...
+1. Download [Stable Diffusion Forge](https://github.com/lllyasviel/stable-diffusion-webui-forge)
+2. Download models and place in `models/Stable-diffusion/`:
+   - **Anime:** [NovaAnimeXL](https://civitai.com/models/...)
+   - **Realistic:** [JuggernautXL](https://civitai.com/models/...)
+   - Or use any SDXL/SD 1.5 models you prefer
+3. Start Forge: `webui-user.bat` (Windows) or `./webui.sh` (Linux/Mac)
+4. Enable API: Add `--api` flag to launch arguments
+5. Verify running on `http://localhost:7860`
+
+**Check Your Models:**
+```bash
+cd backend
+node check-models.js
+```
+
+This will list all available models. Update model names in `backend/src/services/sd-service.js` if needed.
 
 #### 5. Configure Frontend
 
@@ -146,39 +172,23 @@ No additional configuration needed for frontend!
 
 #### 6. Start the Application
 
-**Terminal 1 - Backend:**
+**Terminal 1 - Stable Diffusion (Optional):**
+```bash
+# Navigate to your SD Forge directory
+cd path/to/stable-diffusion-webui-forge
+./webui.sh --api
+```
+
+**Terminal 2 - Backend:**
 ```bash
 cd backend
 npm start
 ```
 
-You should see:
-```
-╔════════════════════════════════════════════════════════╗
-║                                                        ║
-║          🧠 AI BRAIN SERVER STARTED                    ║
-║                                                        ║
-║  Port: 3000                                            ║
-║  Environment: development                              ║
-║  Database: Connected                                   ║
-║                                                        ║
-║  Ready to develop AI personalities! 🚀                 ║
-║                                                        ║
-╚════════════════════════════════════════════════════════╝
-```
-
-**Terminal 2 - Frontend:**
+**Terminal 3 - Frontend:**
 ```bash
 cd frontend
 npm run dev
-```
-
-You should see:
-```
-  VITE v6.0.3  ready in 500 ms
-
-  ➜  Local:   http://localhost:5173/
-  ➜  Network: use --host to expose
 ```
 
 #### 7. Open the App
@@ -200,6 +210,44 @@ Navigate to **http://localhost:5173** in your browser.
    - Type a message in the chat box
    - The AI will respond and remember your conversation
    - Switch personas anytime to change the AI's behavior
+
+### Generating Images
+
+Ask the AI to create images using natural language:
+
+**Quality Keywords:**
+```
+"Generate a masterpiece 8k portrait..."       → SDXL (high quality)
+"Create a quick sketch of..."                 → SD 1.5 (fast)
+"Make an instant turbo image of..."           → Turbo (ultra fast)
+```
+
+**Style Keywords:**
+```
+"Generate an anime girl with blue hair..."    → Anime model
+"Create a photorealistic landscape..."        → Realistic model
+```
+
+**Dimension Keywords:**
+```
+"Make a 1920x1080 image..."                   → Exact dimensions
+"Create a portrait of..."                     → 512x896 (tall)
+"Generate a landscape scene..."               → 896x512 (wide)
+"Make a square wallpaper..."                  → 768x768
+"Create an ultrawide banner..."               → 1024x512
+```
+
+**Examples:**
+```
+"Generate a hyper-detailed 8k anime warrior with silver hair in 1024x1024"
+→ SDXL, Anime model, 1024x1024
+
+"Create a quick realistic portrait in landscape"
+→ SD 1.5, Realistic model, 896x512
+
+"Make an instant turbo image of a cat"
+→ Turbo model, 768x768 (default)
+```
 
 ### Using Learning Mode
 
@@ -241,11 +289,13 @@ Navigate to **http://localhost:5173** in your browser.
 - Node.js with Express
 - PostgreSQL 18 (database)
 - OpenAI API (GPT-4o and embeddings)
+- Stable Diffusion Forge API (image generation)
 - node-cron (background jobs)
 
 **AI Models:**
 - `gpt-4o` - Main conversational AI
 - `text-embedding-3-small` - Vector embeddings for semantic search
+- Stable Diffusion XL/1.5 - Image generation
 
 ### Project Structure
 
@@ -260,6 +310,7 @@ ai-brain/
 │   │   │   └── learning.js # Learning mode endpoints
 │   │   ├── services/       # Business logic
 │   │   │   ├── gpt-service.js       # GPT-4 integration
+│   │   │   ├── sd-service.js        # Stable Diffusion integration
 │   │   │   ├── memory-service.js    # Memory storage/retrieval
 │   │   │   ├── persona-service.js   # Persona management
 │   │   │   ├── insights-service.js  # Analytics
@@ -267,6 +318,7 @@ ai-brain/
 │   │   ├── jobs/           # Background tasks
 │   │   ├── db/             # Database connection
 │   │   └── server.js       # Express server
+│   ├── check-models.js     # Utility to check SD models
 │   ├── .env                # Configuration (create this)
 │   └── package.json
 │
@@ -284,6 +336,7 @@ ai-brain/
 │   └── package.json
 │
 ├── README.md
+├── SETUP.md
 ├── LICENSE
 └── .gitignore
 ```
@@ -311,6 +364,7 @@ ai-brain/
 | `DB_USER` | Yes | Database user | `postgres` |
 | `DB_PASSWORD` | Yes | Database password | - |
 | `OPENAI_API_KEY` | Yes | OpenAI API key | - |
+| `SD_API_URL` | No | Stable Diffusion API URL | `http://localhost:7860` |
 | `PORT` | No | Backend port | `3000` |
 | `NODE_ENV` | No | Environment | `development` |
 | `ENABLE_CRON_JOBS` | No | Enable background jobs | `true` |
@@ -323,7 +377,63 @@ ai-brain/
 - **Insights Analysis:** $0.01 per analysis
 - **Quiz Generation:** $0.02 per quiz (5 questions)
 
-**Typical Monthly Cost:** $15-45 for moderate use (1,000-3,000 messages)
+**Stable Diffusion:**
+- **FREE** (runs locally on your GPU)
+- Requires: 8GB+ VRAM for SDXL, 4GB+ for SD 1.5
+
+**Typical Monthly Cost:** $15-45 for moderate use (1,000-3,000 messages) + local GPU
+
+---
+
+## 🎨 Stable Diffusion Configuration
+
+### Automatic Model Selection
+
+The AI automatically selects the best model based on your prompt:
+
+**Quality Tiers:**
+- **SDXL** (High Quality) - "hyper detail", "8k", "masterpiece", "best quality"
+- **SD 1.5** (Fast) - "quick", "fast", "simple", "draft"
+- **Turbo** (Ultra Fast) - "instant", "turbo", "ultra fast"
+
+**Style Detection:**
+- **Anime** - "anime", "manga", "cartoon", "chibi", "kawaii"
+- **Realistic** - "realistic", "photo", "photorealistic", "cinematic"
+
+### Supported Models
+
+The system works with any Stable Diffusion models. Default configuration:
+
+**SDXL Models:**
+- `novaAnimeXL_ilV160.safetensors` - Anime/Manga
+- `juggernautXL_ragnarokBy.safetensors` - Realistic/Photographic
+
+**SD 1.5 Models:**
+- `AnyLoRA-anime.safetensors` - Anime (fast)
+- `v1-5-pruned-emaonly.ckpt` - Realistic (fast)
+
+**Turbo Models:**
+- `zImageTurbo_turbo.safetensors` - Ultra fast generation
+
+### Customizing Models
+
+1. Check your available models:
+```bash
+cd backend
+node check-models.js
+```
+
+2. Update model names in:
+```javascript
+// backend/src/services/sd-service.js
+const MODELS = {
+    xl_anime: { name: 'your-anime-model.safetensors', ... },
+    xl_realistic: { name: 'your-realistic-model.safetensors', ... },
+    // ... etc
+};
+```
+
+3. Restart backend
 
 ---
 
@@ -372,6 +482,21 @@ This will enable finding memories by **meaning** rather than just recency.
 - **Solution:** Verify your OpenAI API key in `.env`
 - **Get key:** https://platform.openai.com/api-keys
 
+### Stable Diffusion Issues
+
+**Error:** "Could not generate image — SD not running"
+- **Solution:** Start Stable Diffusion Forge with `--api` flag
+- **Check:** Navigate to `http://localhost:7860` in browser
+
+**Error:** "Model switch failed"
+- **Solution:** Check your model names with `node check-models.js`
+- **Fix:** Update model names in `sd-service.js`
+
+**Slow image generation:**
+- **Reduce dimensions:** Use 512x512 instead of 1024x1024
+- **Use faster models:** Add "quick" or "fast" to prompt for SD 1.5
+- **Check GPU:** Ensure CUDA/DirectML is working
+
 ### Frontend shows blank screen
 
 **Error:** Vite build error
@@ -398,7 +523,7 @@ This will enable finding memories by **meaning** rather than just recency.
 ### Main Endpoints
 
 **Chat:**
-- `POST /api/chat` - Send message, get response
+- `POST /api/chat` - Send message, get response (includes image generation)
 - `GET /api/chat/history/:userId` - Get conversation history
 - `GET /api/chat/personality/:userId` - Get personality traits
 
@@ -447,6 +572,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **OpenAI** - GPT-4 and embeddings API
+- **Stable Diffusion / lllyasviel** - Forge WebUI and image generation
 - **PostgreSQL** - Robust database system
 - **React** - Frontend framework
 - **Vite** - Lightning-fast build tool
@@ -465,6 +591,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🎉 What's Next?
 
 ### Planned Features
+- [ ] Img2img and inpainting support
+- [ ] ControlNet integration
+- [ ] LoRA model support
 - [ ] Voice input/output
 - [ ] Mobile app (React Native)
 - [ ] Export conversations to PDF
