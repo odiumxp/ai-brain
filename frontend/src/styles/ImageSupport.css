@@ -1,0 +1,108 @@
+/* Image Preview Styles */
+.image-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.image-preview img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #e5e5e5;
+}
+
+.image-preview .image-name {
+  flex: 1;
+  font-size: 14px;
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image-preview .remove-image {
+  width: 28px;
+  height: 28px;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  transition: background 0.2s;
+}
+
+.image-preview .remove-image:hover {
+  background: #333;
+}
+
+/* Message Image Styles */
+.message-image {
+  margin-bottom: 10px;
+  max-width: 300px;
+}
+
+.message-image img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 5px;
+}
+
+.message-image .image-name {
+  font-size: 12px;
+  color: #999;
+  display: block;
+}
+
+/* Input Row */
+.input-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.image-button {
+  width: 45px;
+  height: 45px;
+  background: white;
+  border: 2px solid #e5e5e5;
+  border-radius: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.image-button:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.image-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input-row textarea {
+  flex: 1;
+}
+
+.input-row button:last-child {
+  flex-shrink: 0;
+}
