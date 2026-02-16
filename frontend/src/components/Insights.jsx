@@ -5,29 +5,33 @@ export default function Insights() {
   const [insights, setInsights] = useState(null);
   const [loading, setLoading] = useState(true);
   const [timeRange, setTimeRange] = useState(30);
-  
+
   const API_URL = 'http://localhost:3000';
   const USER_ID = 'f9364170-b5d7-4239-affd-1eea6ad5dac2';
-  
+
   useEffect(() => {
     fetchInsights();
   }, [timeRange]);
-  
+
   const fetchInsights = async () => {
     setLoading(true);
+    console.log('🔍 Fetching insights for', timeRange, 'days...');
     try {
       const response = await fetch(`${API_URL}/api/insights/${USER_ID}?days=${timeRange}`);
       if (response.ok) {
         const data = await response.json();
+        console.log('✅ Insights loaded:', data.generated_at);
         setInsights(data);
+      } else {
+        console.error('❌ Failed to fetch insights:', response.status);
       }
     } catch (error) {
-      console.error('Error fetching insights:', error);
+      console.error('❌ Error fetching insights:', error);
     } finally {
       setLoading(false);
     }
   };
-  
+
   const getMoodEmoji = (mood) => {
     const emojis = {
       joy: '😊',
@@ -39,13 +43,13 @@ export default function Insights() {
     };
     return emojis[mood] || '😐';
   };
-  
+
   const getTrendIcon = (trend) => {
     if (trend === 'improving') return '📈';
     if (trend === 'declining') return '📉';
     return '➡️';
   };
-  
+
   if (loading) {
     return (
       <div className="insights-container">
@@ -56,7 +60,7 @@ export default function Insights() {
       </div>
     );
   }
-  
+
   if (!insights) {
     return (
       <div className="insights-container">
@@ -66,23 +70,30 @@ export default function Insights() {
       </div>
     );
   }
-  
+
   return (
     <div className="insights-container">
       <div className="insights-header">
         <h1>AI Insights</h1>
-        <select 
-          value={timeRange} 
-          onChange={(e) => setTimeRange(parseInt(e.target.value))}
-          className="time-range-select"
-        >
-          <option value={7}>Last 7 days</option>
-          <option value={30}>Last 30 days</option>
-          <option value={90}>Last 90 days</option>
-          <option value={365}>Last year</option>
-        </select>
+        <div className="insights-meta">
+          <select
+            value={timeRange}
+            onChange={(e) => setTimeRange(parseInt(e.target.value))}
+            className="time-range-select"
+          >
+            <option value={7}>Last 7 days</option>
+            <option value={30}>Last 30 days</option>
+            <option value={90}>Last 90 days</option>
+            <option value={365}>Last year</option>
+          </select>
+          {insights.generated_at && (
+            <div className="generated-time">
+              Generated: {new Date(insights.generated_at).toLocaleString()}
+            </div>
+          )}
+        </div>
       </div>
-      
+
       <div className="insights-grid">
         {/* Stats Cards */}
         <div className="insight-card stats-card">
@@ -108,7 +119,7 @@ export default function Insights() {
             </div>
           </div>
         </div>
-        
+
         {/* Mood Analysis */}
         <div className="insight-card mood-card">
           <h3>Mood Analysis</h3>
@@ -129,8 +140,8 @@ export default function Insights() {
               <div key={emotion} className="emotion-bar">
                 <span className="emotion-name">{emotion}</span>
                 <div className="emotion-progress">
-                  <div 
-                    className="emotion-fill" 
+                  <div
+                    className="emotion-fill"
                     style={{ width: `${parseFloat(value) * 100}%` }}
                   />
                 </div>
@@ -139,7 +150,7 @@ export default function Insights() {
             ))}
           </div>
         </div>
-        
+
         {/* Topics */}
         <div className="insight-card topics-card">
           <h3>What You Talk About Most</h3>
@@ -162,7 +173,7 @@ export default function Insights() {
             )}
           </div>
         </div>
-        
+
         {/* Behavior Patterns */}
         <div className="insight-card patterns-card">
           <h3>Behavior Patterns</h3>
@@ -180,7 +191,7 @@ export default function Insights() {
             )}
           </div>
         </div>
-        
+
         {/* Recommendations */}
         <div className="insight-card recommendations-card">
           <h3>Personalized Recommendations</h3>

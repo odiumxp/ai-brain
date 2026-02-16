@@ -11,11 +11,22 @@ const chatRoutes = require('./api/chat');
 const personasRoutes = require('./api/personas');
 const insightsRoutes = require('./api/insights');
 const learningRoutes = require('./api/learning');
+const controlRoutes = require('./api/control');
+
+// Import services
+const { clearOldSessions } = require('./services/working-memory-service');
 
 // Import jobs
 const consolidationJob = require('./jobs/consolidation');
 const personalityEvolutionJob = require('./jobs/personality-evolution');
+const personalityConsolidationJob = require('./jobs/personality-consolidation');
+const identitySummaryJob = require('./jobs/identity-summary-generation');
 const connectionDecayJob = require('./jobs/connection-decay');
+const conceptSchemaMaintenanceJob = require('./jobs/concept-schema-maintenance');
+const reflectionEngineJob = require('./jobs/reflection-engine');
+const memoryChainsMaintenanceJob = require('./jobs/memory-chains-maintenance');
+const userModelMaintenanceJob = require('./jobs/user-model-maintenance');
+const emotionalContinuityMaintenanceJob = require('./jobs/emotional-continuity-maintenance');
 
 // Initialize express
 const app = express();
@@ -51,6 +62,7 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/personas', personasRoutes);
 app.use('/api/insights', insightsRoutes);
 app.use('/api/learning', learningRoutes);
+app.use('/api/control', controlRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {
@@ -97,10 +109,48 @@ if (process.env.ENABLE_CRON_JOBS !== 'false') {
         personalityEvolutionJob.run().catch(console.error);
     });
 
-    // Connection decay (weekly on Sunday at 4 AM)
-    cron.schedule('0 4 * * 0', () => {
+    // Personality consolidation (daily at 4 AM)
+    cron.schedule('0 4 * * *', () => {
+        console.log('🔄 Running personality consolidation job...');
+        personalityConsolidationJob.run().catch(console.error);
+    });
+
+    // Identity summary generation (daily at 5 AM)
+    cron.schedule('0 5 * * *', () => {
+        console.log('🧠 Running identity summary generation job...');
+        identitySummaryJob.run().catch(console.error);
+    });
+    // Concept schema maintenance (daily at 6 AM)
+    cron.schedule('0 6 * * *', () => {
+        console.log('📚 Running concept schema maintenance job...');
+        conceptSchemaMaintenanceJob.run().catch(console.error);
+    });
+
+    // Reflection engine (daily at 7 AM)
+    cron.schedule('0 7 * * *', () => {
+        console.log('🧠 Running reflection engine job...');
+        reflectionEngineJob.run().catch(console.error);
+    });
+
+    // Memory chains maintenance (daily at 8 AM)
+    memoryChainsMaintenanceJob.initializeMemoryChainsJob();
+
+    // User model maintenance (daily at 1 AM)
+    userModelMaintenanceJob.initializeUserModelJob();
+
+    // Emotional continuity maintenance (daily at 3 AM)
+    emotionalContinuityMaintenanceJob.initializeEmotionalContinuityJob();
+
+    // Connection decay (weekly on Sunday at 6 AM)
+    cron.schedule('0 6 * * 0', () => {
         console.log('🔗 Running connection decay job...');
         connectionDecayJob.run().catch(console.error);
+    });
+
+    // Working memory cleanup (hourly)
+    cron.schedule('0 * * * *', () => {
+        console.log('🧠 Running working memory cleanup job...');
+        clearOldSessions().catch(console.error);
     });
 
     console.log('✅ Background jobs scheduled');

@@ -62,13 +62,14 @@ async function storeMemory(userId, userMessage, aiResponse, personaId = null) {
 }
 
 /**
- * Retrieve relevant memories using semantic search
+ * Retrieve relevant memories using semantic search with pgvector
  */
 async function retrieveRelevantMemories(userId, searchQuery, limit = 10, personaId = null) {
     try {
-        // For now, return recent memories without semantic search
-        // TODO: Implement text-based similarity when pgvector is available
+        // Generate embedding for search query
+        const searchEmbedding = await generateEmbedding(searchQuery);
         
+        // Use vector similarity search with pgvector
         let queryText = `
             SELECT
                 memory_id,
@@ -76,13 +77,13 @@ async function retrieveRelevantMemories(userId, searchQuery, limit = 10, persona
                 emotional_context,
                 timestamp,
                 importance_score,
-                0.5 as similarity
+                1 - (embedding <=> $2::vector) as similarity
             FROM episodic_memory
             WHERE user_id = $1
             AND importance_score > 0.3
         `;
         
-        const params = [userId];
+        const params = [userId, JSON.stringify(searchEmbedding)];
         
         // Filter by persona if provided
         if (personaId) {
@@ -90,7 +91,8 @@ async function retrieveRelevantMemories(userId, searchQuery, limit = 10, persona
             params.push(personaId);
         }
         
-        queryText += ` ORDER BY timestamp DESC LIMIT $${params.length + 1}`;
+        // Order by semantic similarity (cosine distance)
+        queryText += ` ORDER BY embedding <=> $2::vector LIMIT $${params.length + 1}`;
         params.push(limit);
         
         const result = await query(queryText, params);
@@ -105,6 +107,8 @@ async function retrieveRelevantMemories(userId, searchQuery, limit = 10, persona
                 WHERE memory_id = ANY($1)
             `, [memoryIds]);
         }
+
+        console.log(`🧠 Retrieved ${result.rows.length} semantically similar memories (avg similarity: ${(result.rows.reduce((sum, r) => sum + parseFloat(r.similarity), 0) / result.rows.length || 0).toFixed(3)})`);
 
         return result.rows;
     } catch (error) {

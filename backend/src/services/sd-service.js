@@ -62,7 +62,7 @@ const QUALITY_KEYWORDS = {
 
 // Style detection keywords
 const STYLE_KEYWORDS = {
-    anime: ['anime', 'manga', 'cartoon', 'animated', 'chibi', 'kawaii', 'cel shaded', '2d art', 'illustration'],
+    anime: ['anime', 'manga', 'cartoon', 'animated', 'chibi', 'kawaii', 'cel shaded', '2d art', 'illustration', 'waifu', 'moe', 'bishoujo', 'tsundere', 'yandere', 'cute girl', 'anime style', 'manga style'],
     realistic: ['realistic', 'photo', 'photograph', 'photorealistic', 'portrait', 'cinematic', '3d render', 'real', 'person']
 };
 
@@ -71,19 +71,19 @@ const STYLE_KEYWORDS = {
  */
 function selectQualityTier(prompt) {
     const lower = prompt.toLowerCase();
-    
+
     // Check turbo keywords
     if (QUALITY_KEYWORDS.turbo.some(kw => lower.includes(kw))) {
         console.log(`⚡⚡ Quality: TURBO (ultra fast)`);
         return 'turbo';
     }
-    
+
     // Check SD 1.5 keywords
     if (QUALITY_KEYWORDS.sd15.some(kw => lower.includes(kw))) {
         console.log(`⚡ Quality: SD 1.5 (fast)`);
         return 'sd15';
     }
-    
+
     // Default to SDXL (your best quality)
     console.log(`⭐ Quality: SDXL (high quality)`);
     return 'xl';
@@ -94,16 +94,17 @@ function selectQualityTier(prompt) {
  */
 function selectStyle(prompt) {
     const lower = prompt.toLowerCase();
-    
+
     const animeScore = STYLE_KEYWORDS.anime.filter(kw => lower.includes(kw)).length;
     const realisticScore = STYLE_KEYWORDS.realistic.filter(kw => lower.includes(kw)).length;
-    
-    if (animeScore > realisticScore) {
-        console.log(`🎨 Style: Anime`);
+
+    // Prioritize anime if any anime keywords are present
+    if (animeScore > 0) {
+        console.log(`🎨 Style: Anime (${animeScore} keywords)`);
         return 'anime';
     }
-    
-    console.log(`📷 Style: Realistic`);
+
+    console.log(`📷 Style: Realistic (${realisticScore} keywords)`);
     return 'realistic';
 }
 
@@ -113,17 +114,17 @@ function selectStyle(prompt) {
 function selectModelForPrompt(prompt) {
     const tier = selectQualityTier(prompt);
     const style = selectStyle(prompt);
-    
+
     // Find matching model
-    const model = Object.values(MODELS).find(m => 
+    const model = Object.values(MODELS).find(m =>
         m.tier === tier && m.style === style
     );
-    
+
     if (model) {
         console.log(`✅ Model: ${model.name}`);
         return model.name;
     }
-    
+
     // Fallback to XL realistic
     console.log(`⚠️ Fallback to ${MODELS.xl_realistic.name}`);
     return MODELS.xl_realistic.name;
@@ -134,13 +135,13 @@ function selectModelForPrompt(prompt) {
  */
 function parseDimensions(prompt) {
     const lowerPrompt = prompt.toLowerCase();
-    
+
     // Explicit dimensions (e.g., "1024x768")
     const match = prompt.match(/(\d{3,4})\s*x\s*(\d{3,4})/i);
     if (match) {
         return { width: parseInt(match[1]), height: parseInt(match[2]) };
     }
-    
+
     // Keywords
     if (lowerPrompt.includes('landscape') || lowerPrompt.includes('wide')) {
         return { width: 896, height: 512 };
@@ -157,7 +158,7 @@ function parseDimensions(prompt) {
     if (lowerPrompt.includes('banner')) {
         return { width: 1024, height: 256 };
     }
-    
+
     return { width: 768, height: 768 };
 }
 
@@ -172,7 +173,7 @@ async function setModel(modelName) {
             body: JSON.stringify({ sd_model_checkpoint: modelName }),
             signal: AbortSignal.timeout(10000)
         });
-        
+
         if (!response.ok) throw new Error(`Failed to set model`);
         console.log(`✅ Model loaded: ${modelName}`);
         return true;
@@ -203,14 +204,14 @@ async function generateImage(prompt, overrides = {}) {
     // Auto-select model
     const selectedModel = selectModelForPrompt(prompt);
     await setModel(selectedModel);
-    
+
     // Auto-select dimensions
     const dimensions = parseDimensions(prompt);
     console.log(`📐 Dimensions: ${dimensions.width}x${dimensions.height}`);
-    
+
     // Wait for model to load
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     const params = {
         prompt,
         ...DEFAULT_PARAMS,
@@ -294,9 +295,9 @@ async function getAvailableModels() {
         const response = await fetch(`${SD_API_URL}/sdapi/v1/sd-models`, {
             signal: AbortSignal.timeout(5000)
         });
-        
+
         if (!response.ok) throw new Error('Failed to get models');
-        
+
         const models = await response.json();
         return models.map(m => m.title || m.model_name);
     } catch (error) {

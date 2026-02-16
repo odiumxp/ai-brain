@@ -1,6 +1,6 @@
-# 🧠 AI Brain - Persistent Memory AI with Evolving Personality
+# 🧠 AI Brain - Advanced Cognitive Architecture with Emergent Intelligence
 
-A sophisticated AI application featuring **persistent memory**, **evolving personality**, **multiple personas**, **AI-powered image generation**, and **advanced learning capabilities**. Built with GPT-4, React, Node.js, PostgreSQL, and Stable Diffusion.
+A sophisticated AI application featuring **persistent memory**, **emotional intelligence**, **self-awareness**, **theory of mind**, **evolving personality**, and **cognitive emergence**. Built with GPT-4, React, Node.js, PostgreSQL, and Stable Diffusion.
 
 ![AI Brain Dashboard](https://img.shields.io/badge/Status-Production%20Ready-success)
 ![License](https://img.shields.io/badge/License-MIT-blue)
@@ -8,59 +8,176 @@ A sophisticated AI application featuring **persistent memory**, **evolving perso
 ![React](https://img.shields.io/badge/React-18.3-blue)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-blue)
 
-## ✨ Features
+---
+
+## 🌟 What Makes AI Brain Special?
+
+AI Brain is not just another chatbot. It's a **complete cognitive architecture** that simulates human-like intelligence:
+
+### 🧠 **Emergent Intelligence Features**
+
+**Six Core Cognitive Systems:**
+
+1. **Working Memory Simulation** - Tracks active conversation topics, unresolved questions, and conversation goals in real-time
+2. **Emotional Continuity** - Understands and remembers your emotional states over time with empathy calibration
+3. **Memory Chains** - Links related memories for narrative understanding and story recall
+4. **Concept Schema Layer** - Organizes knowledge hierarchically with semantic relationships
+5. **User Model & Theory of Mind** - Builds a model of your beliefs, goals, values, and mental states
+6. **Self-Reflection Engine** - Performs meta-cognition and introspection on its own behavior
+
+**Result:** An AI that truly **understands context**, **remembers relationships**, **learns patterns**, and **adapts to you**.
+
+---
+
+## ✨ Complete Feature Set
 
 ### 🎭 Multiple AI Personas
-- **Switch between specialized AI personalities** - General Assistant, Work Coach, Creative Partner, Learning Tutor
-- **Create custom personas** with unique system prompts and behavior
-- **Separate memory banks** - Each persona maintains its own conversation history
-- **Seamless switching** - Change personalities mid-conversation
+- **4 Specialized AI Personalities** - General Assistant, Work Coach, Creative Partner, Learning Tutor
+- **Custom Persona Creation** - Design your own AI with unique prompts and behavior
+- **Separate Memory Banks** - Each persona maintains its own conversation history
+- **Seamless Switching** - Change personalities mid-conversation without losing context
 
-### 🎨 AI Image Generation (Stable Diffusion Integration)
-- **Automatic Model Selection** - AI chooses the best model based on your prompt
-  - **Anime/Manga** → NovaAnimeXL or WaiIllustrious models
-  - **Realistic/Photographic** → JuggernautXL model
-- **Smart Quality Tiers** - Automatic selection based on keywords
-  - **SDXL** (High Quality) - For "hyper detail", "8k", "masterpiece"
-  - **SD 1.5** (Fast) - For "quick", "draft", "simple"
-  - **Turbo** (Ultra Fast) - For "instant", "turbo"
-- **Intelligent Dimensions** - Understands aspect ratios
-  - Exact dimensions: "1024x768"
-  - Keywords: "portrait", "landscape", "square", "ultrawide", "banner"
-- **Natural Language Prompts** - Just describe what you want!
+### 🧠 Advanced Memory Systems
 
-### 🧠 Persistent Memory System
-- **Never forgets** - Every conversation is stored with vector embeddings
-- **Semantic search** - Retrieves relevant past conversations automatically
-- **Importance scoring** - Prioritizes meaningful memories
-- **Emotional context** - Tracks mood and sentiment using GPT-4 analysis
-- **Memory Browser** - Search, filter, pin, and delete memories
+#### **Episodic Memory** (Hippocampus)
+- Stores every conversation with vector embeddings (1536 dimensions)
+- Semantic search using pgvector - finds memories by **meaning**, not just recency
+- Importance scoring and emotional tagging
+- Access count tracking and memory consolidation
+
+#### **Working Memory** (Active Context)
+- Tracks 3-5 most recent topics in conversation
+- Maintains unresolved questions
+- Identifies conversation goals
+- Provides context continuity between messages
+
+#### **Memory Chains** (Narrative Understanding)
+- Links related memories automatically using embedding similarity
+- Creates narrative arcs across multiple conversations
+- AI-powered chain summaries
+- Tracks emotional progression through stories
+- Retrieves entire story threads, not just isolated memories
+
+#### **Semantic Memory** (Knowledge Structure)
+- Hierarchical concept organization
+- Parent-child relationships (is_a, part_of, instance_of)
+- Associative links (similar_to, causes, related_to)
+- Semantic graph traversal
+- Confidence scoring for learned knowledge
+
+### 💖 Emotional Intelligence
+
+#### **Emotional Timeline**
+- Real-time emotion detection using GPT-4
+- Tracks 8 core emotions: joy, sadness, anger, fear, surprise, disgust, trust, anticipation
+- Intensity and confidence scoring
+- Duration and resolution tracking
+- Links emotions to specific memories
+
+#### **Emotional Patterns**
+- Learns your emotional triggers
+- Identifies effective empathy strategies
+- Tracks frequency and confidence
+- Adapts responses based on your emotional history
+
+#### **Empathy Calibration**
+- AI adjusts tone based on detected emotions
+- Remembers how you felt in past conversations
+- Proactive emotional support
+- "You seemed stressed last time we talked about X"
+
+### 🧠 Theory of Mind (User Model)
+
+#### **Belief Tracking**
+- Extracts beliefs from conversations
+- Categorizes: religious, political, scientific, personal, ethical
+- Tracks supporting and contradicting evidence
+- Measures belief strength and confidence
+
+#### **Goal Management**
+- Identifies your short and long-term goals
+- Priority and status tracking
+- Progress monitoring
+- Success criteria and obstacle identification
+
+#### **Values & Principles**
+- Infers your core values
+- Links values to behaviors
+- Importance scoring
+- Conflict resolution strategies
+
+#### **Mental State Inference**
+- Detects cognitive load (normal, high, overwhelmed)
+- Identifies stress indicators
+- Communication style adaptation
+- Inferred needs ("You might need a break")
+
+### 🪞 Self-Awareness (Meta-Cognition)
+
+#### **Reflection Engine**
+- Daily self-analysis of patterns
+- Behavioral change tracking
+- Learning summarization
+- Identity updates
+- Generates insights about itself
+
+#### **Identity Summaries**
+- Stable personality snapshots per persona
+- Behavioral pattern analysis
+- Relationship dynamics
+- Evolution trends over time
+- Stability and confidence scoring
+
+### 🎨 AI Image Generation (Stable Diffusion)
+- **Automatic Model Selection** - AI chooses best model for your prompt
+  - **Anime/Manga** → NovaAnimeXL or WaiIllustrious
+  - **Realistic** → JuggernautXL
+- **Smart Quality Tiers** - SDXL (high), SD 1.5 (fast), Turbo (ultra fast)
+- **Intelligent Dimensions** - Understands "portrait", "landscape", "square"
+- **Natural Language Prompts** - Just describe what you want
 
 ### 📊 AI Insights Dashboard
-- **Topic Analysis** - "What have we talked about most this month?"
-- **Mood Tracking** - Visualize emotional trends over time
-- **Behavior Patterns** - AI identifies recurring themes and habits
+- **Topic Analysis** - "What have we talked about most?"
+- **Mood Tracking** - Emotional trends over time
+- **Behavior Patterns** - Recurring themes and habits
 - **Personalized Recommendations** - Context-aware suggestions
-- **Conversation Statistics** - Track engagement and activity
+- **Conversation Statistics** - Engagement metrics
 
-### 📚 Learning Mode (Integrated with Learning Tutor)
-- **Quiz Generation** - Automatically creates questions from Learning Tutor conversations
-- **Spaced Repetition** - Smart review scheduling (1 day → 3 days → 1 week → 2 weeks → 1 month)
-- **Mastery Tracking** - 6-level progression system (New → Expert)
+### 📚 Learning Mode with Spaced Repetition
+- **Quiz Generation** - Auto-creates questions from Learning Tutor
+- **Spaced Repetition** - Smart scheduling (1d → 3d → 1w → 2w → 1m)
+- **6-Level Mastery** - New → Beginner → Learning → Practiced → Proficient → Expert
 - **Study Sessions** - Focused learning with progress tracking
-- **Knowledge Retention** - Review items when they're about to be forgotten
 
 ### 🎨 Rich Text Formatting
 - **Markdown Support** - Bold, italic, headers, lists, tables
-- **Syntax Highlighting** - Beautiful code blocks with 20+ languages
-- **Clean Rendering** - Professional typography and spacing
+- **Syntax Highlighting** - 20+ programming languages
+- **Professional Typography** - Clean, readable design
+
+### 🛠️ Comprehensive Control Panel
+**15 Management Tabs:**
+- **Overview** - System health and metrics
+- **Performance** - CPU, memory, response times
+- **Memory** - Episodic, working, and cache management
+- **Personality** - Trait visualization and customization
+- **Identity** - Self-model summaries
+- **Emotions** - Timeline and pattern analysis
+- **Concepts** - Semantic graph browser
+- **User Model** - Beliefs, goals, values dashboard
+- **Reflection** - Self-awareness insights
+- **Memory Chains** - Narrative thread browser
+- **AI Models** - GPT-4/Claude status
+- **Security** - API key management
+- **Logs** - Real-time system monitoring
+- **Backup** - Data export/import
+- **Debug** - Developer tools
 
 ### 💡 Additional Features
-- **Personality Evolution** - AI traits change naturally through interactions
-- **Memory Consolidation** - Background jobs optimize storage
-- **Real-time Stats** - Live personality trait visualization
-- **Minimalist UI** - Clean, professional, Apple-inspired design
-- **Responsive Design** - Works on desktop, tablet, and mobile
+- **Personality Evolution** - AI traits change naturally
+- **Memory Consolidation** - Background optimization
+- **Connection Decay** - Simulates forgetting
+- **Minimalist UI** - Clean Apple-inspired design
+- **Responsive Design** - Works on desktop, tablet, mobile
 
 ---
 
@@ -69,43 +186,39 @@ A sophisticated AI application featuring **persistent memory**, **evolving perso
 ### Prerequisites
 
 - **Node.js** 18+ ([Download](https://nodejs.org/))
-- **PostgreSQL** 18+ ([Download](https://www.postgresql.org/download/))
-- **OpenAI API Key** ([Get one here](https://platform.openai.com/api-keys))
-- **Stable Diffusion Forge** (Optional - for image generation) ([Download](https://github.com/lllyasviel/stable-diffusion-webui-forge))
+- **PostgreSQL** 18+ with pgvector ([Download](https://www.postgresql.org/download/))
+- **OpenAI API Key** ([Get one](https://platform.openai.com/api-keys))
+- **Stable Diffusion Forge** (Optional) ([Download](https://github.com/lllyasviel/stable-diffusion-webui-forge))
+- **Visual Studio Build Tools** (Windows - for pgvector) ([Download](https://visualstudio.microsoft.com/downloads/))
 
 ### Installation
 
-#### 1. Clone the Repository
+#### 1. Clone Repository
 
 ```bash
 git clone https://github.com/odiumxp/ai-brain.git
 cd ai-brain
 ```
 
-#### 2. Set Up PostgreSQL Database
+#### 2. Set Up PostgreSQL
 
-**Option A: Using psql (Command Line)**
-
+**Option A: Command Line (psql)**
 ```bash
-# Connect to PostgreSQL
 psql -U postgres
-
-# Create database
 CREATE DATABASE aibrain;
-
-# Connect to database
 \c aibrain
-
-# Exit psql
+CREATE EXTENSION vector;
 \q
 ```
 
-**Option B: Using pgAdmin (GUI)**
+**Option B: GUI (pgAdmin)**
+1. Create database "aibrain"
+2. Run: `CREATE EXTENSION vector;`
 
-1. Open pgAdmin
-2. Right-click "Databases" → "Create" → "Database"
-3. Name: `aibrain`
-4. Click "Save"
+**Verify pgvector:**
+```bash
+psql -U postgres -d aibrain -c "\dx"
+```
 
 #### 3. Configure Backend
 
@@ -114,86 +227,58 @@ cd backend
 npm install
 ```
 
-Create `.env` file in the `backend` directory:
-
+Create `.env` file:
 ```env
-# Database Configuration
+# Database
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=aibrain
 DB_USER=postgres
-DB_PASSWORD=your_postgres_password
+DB_PASSWORD=your_password
 
-# OpenAI API Key (Required)
-OPENAI_API_KEY=sk-your-openai-api-key-here
+# OpenAI (Required)
+OPENAI_API_KEY=sk-your-key-here
 
-# Stable Diffusion (Optional - for image generation)
+# Stable Diffusion (Optional)
 SD_API_URL=http://localhost:7860
 
-# Server Configuration
+# Server
 PORT=3000
 NODE_ENV=development
-
-# Optional: Enable/disable background jobs
 ENABLE_CRON_JOBS=true
 ```
 
-**⚠️ Important:** Replace `your_postgres_password` and `sk-your-openai-api-key-here` with your actual credentials.
-
 #### 4. Set Up Stable Diffusion (Optional)
 
-**For Image Generation:**
+1. Download [SD Forge](https://github.com/lllyasviel/stable-diffusion-webui-forge)
+2. Download models to `models/Stable-diffusion/`
+3. Start: `webui-user.bat --api`
+4. Check models: `node check-models.js`
 
-1. Download [Stable Diffusion Forge](https://github.com/lllyasviel/stable-diffusion-webui-forge)
-2. Download models and place in `models/Stable-diffusion/`:
-   - **Anime:** [NovaAnimeXL](https://civitai.com/models/...)
-   - **Realistic:** [JuggernautXL](https://civitai.com/models/...)
-   - Or use any SDXL/SD 1.5 models you prefer
-3. Start Forge: `webui-user.bat` (Windows) or `./webui.sh` (Linux/Mac)
-4. Enable API: Add `--api` flag to launch arguments
-5. Verify running on `http://localhost:7860`
-
-**Check Your Models:**
-```bash
-cd backend
-node check-models.js
-```
-
-This will list all available models. Update model names in `backend/src/services/sd-service.js` if needed.
-
-#### 5. Configure Frontend
+#### 5. Install Frontend
 
 ```bash
 cd ../frontend
 npm install
 ```
 
-No additional configuration needed for frontend!
+#### 6. Start Application
 
-#### 6. Start the Application
-
-**Terminal 1 - Stable Diffusion (Optional):**
-```bash
-# Navigate to your SD Forge directory
-cd path/to/stable-diffusion-webui-forge
-./webui.sh --api
-```
-
-**Terminal 2 - Backend:**
+**Terminal 1 - Backend:**
 ```bash
 cd backend
 npm start
 ```
 
-**Terminal 3 - Frontend:**
+**Terminal 2 - Frontend:**
 ```bash
 cd frontend
 npm run dev
 ```
 
-#### 7. Open the App
+#### 7. Open App
 
-Navigate to **http://localhost:5173** in your browser.
+Navigate to **http://localhost:5173**
 
 ---
 
@@ -201,77 +286,93 @@ Navigate to **http://localhost:5173** in your browser.
 
 ### Getting Started
 
-1. **Initialize Default Personas**
-   - Click the persona dropdown in the chat header
-   - Click "Create Default Personas"
-   - This creates 4 AI personalities: General Assistant, Work Coach, Creative Partner, and Learning Tutor
+1. **Initialize Personas** - Click persona dropdown → "Create Default Personas"
+2. **Start Chatting** - AI remembers everything and learns about you
+3. **Explore Features** - Try Insights, Learning Mode, Memory Browser
 
-2. **Start Chatting**
-   - Type a message in the chat box
-   - The AI will respond and remember your conversation
-   - Switch personas anytime to change the AI's behavior
+### Understanding Emergence
+
+The AI Brain has **6 cognitive layers** working together:
+
+#### 1. **Working Memory** (Conversation Context)
+- Tracks what you're currently talking about
+- Remembers unresolved questions
+- Identifies conversation goals
+- **Example:** "You mentioned wanting to learn Python earlier. Should we continue?"
+
+#### 2. **Emotional Continuity** (Emotional Intelligence)
+- Detects and remembers your emotions
+- Adapts empathy strategies
+- Tracks emotional trends
+- **Example:** "I noticed you've been stressed about work this week. How are you holding up?"
+
+#### 3. **Memory Chains** (Narrative Understanding)
+- Links related memories into story threads
+- Understands narrative arcs
+- Recalls complete conversations
+- **Example:** "Remember when we discussed your job interview? You got the offer and started last month!"
+
+#### 4. **Concept Schema** (Knowledge Structure)
+- Organizes information hierarchically
+- Connects related concepts
+- Semantic understanding
+- **Example:** Knows that "Python" is_a "programming language" and related_to "data science"
+
+#### 5. **User Model** (Theory of Mind)
+- Models your beliefs, goals, and values
+- Infers mental states
+- Adapts to your preferences
+- **Example:** "Based on our conversations, I know you value work-life balance and are goal-oriented"
+
+#### 6. **Self-Reflection** (Meta-Cognition)
+- Analyzes its own patterns
+- Learns from interactions
+- Updates its identity
+- **Example:** "I've noticed I've become more direct in my responses since you prefer concise answers"
 
 ### Generating Images
 
-Ask the AI to create images using natural language:
+Use natural language:
 
-**Quality Keywords:**
 ```
-"Generate a masterpiece 8k portrait..."       → SDXL (high quality)
-"Create a quick sketch of..."                 → SD 1.5 (fast)
-"Make an instant turbo image of..."           → Turbo (ultra fast)
-```
+"Generate a masterpiece 8k anime warrior in 1024x1024"
+→ SDXL, Anime model, High quality
 
-**Style Keywords:**
-```
-"Generate an anime girl with blue hair..."    → Anime model
-"Create a photorealistic landscape..."        → Realistic model
-```
+"Create a quick realistic portrait"
+→ SD 1.5, Realistic model, Fast
 
-**Dimension Keywords:**
-```
-"Make a 1920x1080 image..."                   → Exact dimensions
-"Create a portrait of..."                     → 512x896 (tall)
-"Generate a landscape scene..."               → 896x512 (wide)
-"Make a square wallpaper..."                  → 768x768
-"Create an ultrawide banner..."               → 1024x512
-```
-
-**Examples:**
-```
-"Generate a hyper-detailed 8k anime warrior with silver hair in 1024x1024"
-→ SDXL, Anime model, 1024x1024
-
-"Create a quick realistic portrait in landscape"
-→ SD 1.5, Realistic model, 896x512
-
-"Make an instant turbo image of a cat"
-→ Turbo model, 768x768 (default)
+"Make an instant image of a cat"
+→ Turbo model, Ultra fast
 ```
 
 ### Using Learning Mode
 
-1. **Switch to Learning Tutor** persona
-2. Have a learning conversation (e.g., "Teach me about photosynthesis")
-3. Go to the **Learning** tab
-4. Click **Generate Quiz** to create questions from your conversation
-5. Click **Start Study Session** to review
-6. Mark answers as correct/wrong
-7. Items will come back for review based on spaced repetition
+1. Switch to **Learning Tutor** persona
+2. Learn something: "Teach me about machine learning"
+3. Go to **Learning** tab
+4. Click **Generate Quiz**
+5. **Start Study Session**
+6. Spaced repetition handles review scheduling
 
-### Understanding Insights
+### Exploring the Control Panel
 
-- **Topics** - Shows what you discuss most frequently
-- **Mood** - Tracks emotional trends (joy, sadness, etc.)
-- **Patterns** - Identifies behavioral habits
-- **Recommendations** - AI-generated suggestions based on your interests
+**Control Panel** tab gives you full system access:
+
+- **Personality** - Customize AI traits (humor, empathy, etc.)
+- **Memory** - View and manage all memory systems
+- **Emotions** - See emotional timeline and patterns
+- **Concepts** - Browse semantic knowledge graph
+- **User Model** - View your beliefs, goals, values
+- **Reflection** - Read AI's self-analysis
+- **Memory Chains** - Explore narrative threads
 
 ### Managing Memories
 
-- **Search** - Find specific conversations
-- **Filter** - Sort by importance, date, or access count
-- **Pin** - Mark important memories to prevent decay
-- **Delete** - Remove unwanted memories
+**Memory Browser** tab:
+- Search conversations
+- Filter by importance
+- Pin important memories
+- Delete unwanted data
 
 ---
 
@@ -281,74 +382,110 @@ Ask the AI to create images using natural language:
 
 **Frontend:**
 - React 18.3 with Vite
-- date-fns (date formatting)
-- marked (Markdown parsing)
-- highlight.js (syntax highlighting)
+- date-fns, marked, highlight.js
 
 **Backend:**
-- Node.js with Express
-- PostgreSQL 18 (database)
-- OpenAI API (GPT-4o and embeddings)
-- Stable Diffusion Forge API (image generation)
+- Node.js + Express
+- PostgreSQL 18 + pgvector
+- OpenAI GPT-4o + embeddings (1536d)
+- Stable Diffusion Forge
 - node-cron (background jobs)
 
 **AI Models:**
-- `gpt-4o` - Main conversational AI
-- `text-embedding-3-small` - Vector embeddings for semantic search
+- `gpt-4o` - Main conversation
+- `text-embedding-3-small` - Vector embeddings
 - Stable Diffusion XL/1.5 - Image generation
 
-### Project Structure
+### Cognitive Architecture
 
 ```
-ai-brain/
-├── backend/
-│   ├── src/
-│   │   ├── api/            # API endpoints
-│   │   │   ├── chat.js     # Chat & memory endpoints
-│   │   │   ├── personas.js # Persona management
-│   │   │   ├── insights.js # Analytics endpoints
-│   │   │   └── learning.js # Learning mode endpoints
-│   │   ├── services/       # Business logic
-│   │   │   ├── gpt-service.js       # GPT-4 integration
-│   │   │   ├── sd-service.js        # Stable Diffusion integration
-│   │   │   ├── memory-service.js    # Memory storage/retrieval
-│   │   │   ├── persona-service.js   # Persona management
-│   │   │   ├── insights-service.js  # Analytics
-│   │   │   └── learning-service.js  # Quiz generation
-│   │   ├── jobs/           # Background tasks
-│   │   ├── db/             # Database connection
-│   │   └── server.js       # Express server
-│   ├── check-models.js     # Utility to check SD models
-│   ├── .env                # Configuration (create this)
-│   └── package.json
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/     # React components
-│   │   │   ├── ChatInterface.jsx
-│   │   │   ├── MemoryBrowser.jsx
-│   │   │   ├── Insights.jsx
-│   │   │   ├── LearningMode.jsx
-│   │   │   ├── PersonaSwitcher.jsx
-│   │   │   └── MarkdownRenderer.jsx
-│   │   ├── styles/         # CSS files
-│   │   └── App.jsx         # Main app component
-│   └── package.json
-│
-├── README.md
-├── SETUP.md
-├── LICENSE
-└── .gitignore
+┌─────────────────────────────────────────────────┐
+│           AI BRAIN COGNITIVE LAYERS             │
+├─────────────────────────────────────────────────┤
+│                                                 │
+│  🧠 SELF-AWARENESS (Meta-Cognition)            │
+│  ├─ Reflection Engine                          │
+│  ├─ Identity Summaries                         │
+│  └─ Behavioral Analysis                        │
+│                                                 │
+│  👤 USER MODEL (Theory of Mind)                │
+│  ├─ Belief Tracking                            │
+│  ├─ Goal Management                            │
+│  ├─ Values & Principles                        │
+│  └─ Mental State Inference                     │
+│                                                 │
+│  🗺️ CONCEPT SCHEMA (Knowledge Structure)       │
+│  ├─ Concept Hierarchy                          │
+│  ├─ Relationships                              │
+│  └─ Semantic Graph                             │
+│                                                 │
+│  🔗 MEMORY CHAINS (Narrative Understanding)    │
+│  ├─ Chain Building                             │
+│  ├─ Story Recall                               │
+│  └─ Emotional Arcs                             │
+│                                                 │
+│  💖 EMOTIONAL CONTINUITY (Emotional Intel)     │
+│  ├─ Timeline Tracking                          │
+│  ├─ Pattern Learning                           │
+│  └─ Empathy Calibration                        │
+│                                                 │
+│  🎯 WORKING MEMORY (Active Context)            │
+│  ├─ Active Topics                              │
+│  ├─ Unresolved Questions                       │
+│  └─ Conversation Goals                         │
+│                                                 │
+│  📚 EPISODIC MEMORY (Long-term Storage)        │
+│  ├─ Vector Search (pgvector)                   │
+│  ├─ Importance Scoring                         │
+│  └─ Emotional Tagging                          │
+│                                                 │
+│  🎭 PERSONALITY (Trait System)                 │
+│  ├─ 7 Core Traits                              │
+│  ├─ Evolution Engine                           │
+│  └─ Consolidation                              │
+│                                                 │
+└─────────────────────────────────────────────────┘
 ```
 
 ### Database Schema
 
-**Key Tables:**
-- `episodic_memory` - Stores conversations with embeddings and emotional context
-- `personality_state` - Tracks AI personality traits (humor, empathy, etc.)
-- `ai_personas` - Multiple AI personalities with custom prompts
-- `learning_items` - Quiz questions with spaced repetition data
-- `study_sessions` - Learning session history
+**20+ Tables:**
+
+**Memory Systems:**
+- `episodic_memory` - Conversations with vector(1536) embeddings
+- `working_memory` - Active context
+- `memory_chains` - Linked memories
+- `semantic_memory` - General knowledge
+
+**Cognitive Systems:**
+- `concept_schema` - Hierarchical concepts
+- `concept_hierarchy` - Parent-child relationships
+- `concept_relationships` - Associative links
+- `concept_metadata` - Additional properties
+
+**User Model:**
+- `user_model` - Theory of Mind data
+- `user_beliefs` - Extracted beliefs
+- `user_goals` - Goal tracking
+- `user_values` - Core values
+- `mental_states` - Mental state inference
+
+**Emotional Intelligence:**
+- `emotional_timeline` - Emotion tracking
+- `emotional_patterns` - Learned patterns
+- `emotional_state` - Current mood
+
+**Self-Awareness:**
+- `self_awareness` - Reflection data
+- `identity_summaries` - Self-model snapshots
+
+**Personality:**
+- `personality_state` - Trait values
+- `ai_personas` - Multiple personalities
+
+**Learning:**
+- `learning_items` - Quiz questions
+- `study_sessions` - Review history
 
 ---
 
@@ -356,228 +493,290 @@ ai-brain/
 
 ### Environment Variables
 
-| Variable | Required | Description | Default |
-|----------|----------|-------------|---------|
-| `DB_HOST` | Yes | PostgreSQL host | `localhost` |
-| `DB_PORT` | Yes | PostgreSQL port | `5432` |
-| `DB_NAME` | Yes | Database name | `aibrain` |
-| `DB_USER` | Yes | Database user | `postgres` |
-| `DB_PASSWORD` | Yes | Database password | - |
-| `OPENAI_API_KEY` | Yes | OpenAI API key | - |
-| `SD_API_URL` | No | Stable Diffusion API URL | `http://localhost:7860` |
-| `PORT` | No | Backend port | `3000` |
-| `NODE_ENV` | No | Environment | `development` |
-| `ENABLE_CRON_JOBS` | No | Enable background jobs | `true` |
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `DB_HOST` | Yes | PostgreSQL host |
+| `DB_PASSWORD` | Yes | Database password |
+| `OPENAI_API_KEY` | Yes | OpenAI API key |
+| `SD_API_URL` | No | Stable Diffusion URL |
+| `ENABLE_CRON_JOBS` | No | Background jobs |
+
+### Background Jobs
+
+**9 Scheduled Jobs:**
+
+1. **Memory Consolidation** - Daily 2 AM
+   - Strengthens important memories
+   - Archives old conversations
+2. **Memory Chains Maintenance** - Daily 2 AM
+   - Builds new chains
+   - Updates chain strength
+3. **Personality Consolidation** - Daily 3 AM
+   - Stabilizes traits
+   - Smooths evolution
+4. **Personality Evolution** - Daily 3 AM
+   - Updates traits based on interactions
+5. **Emotional Continuity** - Daily 3 AM
+   - Analyzes patterns
+   - Updates empathy strategies
+6. **Connection Decay** - Weekly Sunday 4 AM
+   - Weakens unused connections
+   - Simulates forgetting
+7. **Concept Schema Maintenance** - Daily 4 AM
+   - Decays weak concepts
+   - Strengthens active ones
+8. **User Model Maintenance** - Daily 1 AM + Weekly
+   - Updates belief confidence
+   - Tracks goal progress
+9. **Reflection Engine** - Daily 7 AM
+   - Performs self-analysis
+   - Generates insights
+10. **Identity Summary** - Daily 5 AM
+    - Creates identity snapshots
+
+Disable: `ENABLE_CRON_JOBS=false`
 
 ### Cost Estimates
 
-**OpenAI API Costs** (approximate):
-- **Embeddings:** $0.00002 per message (~$0.20 per 10,000 messages)
-- **GPT-4o Chat:** $0.0025 per message (~$2.50 per 1,000 messages)
-- **Insights Analysis:** $0.01 per analysis
-- **Quiz Generation:** $0.02 per quiz (5 questions)
+**OpenAI API:**
+- Embeddings: $0.00002/message (~$0.20 per 10,000)
+- GPT-4o: $0.0025/message (~$2.50 per 1,000)
+- Emotion analysis: $0.01/analysis
+- Concept extraction: $0.02/extraction
 
-**Stable Diffusion:**
-- **FREE** (runs locally on your GPU)
-- Requires: 8GB+ VRAM for SDXL, 4GB+ for SD 1.5
+**Stable Diffusion:** FREE (local GPU)
 
-**Typical Monthly Cost:** $15-45 for moderate use (1,000-3,000 messages) + local GPU
-
----
-
-## 🎨 Stable Diffusion Configuration
-
-### Automatic Model Selection
-
-The AI automatically selects the best model based on your prompt:
-
-**Quality Tiers:**
-- **SDXL** (High Quality) - "hyper detail", "8k", "masterpiece", "best quality"
-- **SD 1.5** (Fast) - "quick", "fast", "simple", "draft"
-- **Turbo** (Ultra Fast) - "instant", "turbo", "ultra fast"
-
-**Style Detection:**
-- **Anime** - "anime", "manga", "cartoon", "chibi", "kawaii"
-- **Realistic** - "realistic", "photo", "photorealistic", "cinematic"
-
-### Supported Models
-
-The system works with any Stable Diffusion models. Default configuration:
-
-**SDXL Models:**
-- `novaAnimeXL_ilV160.safetensors` - Anime/Manga
-- `juggernautXL_ragnarokBy.safetensors` - Realistic/Photographic
-
-**SD 1.5 Models:**
-- `AnyLoRA-anime.safetensors` - Anime (fast)
-- `v1-5-pruned-emaonly.ckpt` - Realistic (fast)
-
-**Turbo Models:**
-- `zImageTurbo_turbo.safetensors` - Ultra fast generation
-
-### Customizing Models
-
-1. Check your available models:
-```bash
-cd backend
-node check-models.js
-```
-
-2. Update model names in:
-```javascript
-// backend/src/services/sd-service.js
-const MODELS = {
-    xl_anime: { name: 'your-anime-model.safetensors', ... },
-    xl_realistic: { name: 'your-realistic-model.safetensors', ... },
-    // ... etc
-};
-```
-
-3. Restart backend
+**Typical Monthly:** $15-45 for 1,000-3,000 messages
 
 ---
 
 ## 🎯 Advanced Features
 
-### Background Jobs
+### Semantic Search (pgvector)
 
-The app runs three scheduled background jobs:
+The AI retrieves memories by **meaning**, not just recency:
 
-1. **Memory Consolidation** (Daily at 2 AM)
-   - Merges similar memories
-   - Archives old conversations
-   - Optimizes database
+```sql
+-- Find memories similar to "learning Python"
+SELECT * FROM episodic_memory
+WHERE embedding <=> query_embedding < 0.3
+ORDER BY embedding <=> query_embedding
+LIMIT 10;
+```
 
-2. **Personality Evolution** (Daily at 3 AM)
-   - Updates AI traits based on interactions
-   - Adjusts humor, empathy, directness, etc.
+Console output:
+```
+🧠 Retrieved 15 semantically similar memories (avg similarity: 0.219)
+```
 
-3. **Connection Decay** (Weekly on Sunday at 4 AM)
-   - Reduces importance of old, unused memories
-   - Simulates natural forgetting
+### Memory Chain Traversal
 
-Disable with: `ENABLE_CRON_JOBS=false` in `.env`
+Follow narrative threads:
 
-### Future Enhancements (pgvector)
+```javascript
+// Get complete story about "job search"
+const chain = await memoryChainsService.getNarrativeUnderstanding(
+  userId, 
+  "job search"
+);
 
-The app is ready for **semantic search** using pgvector:
+// Returns: {
+//   chain: { start, end, memories: [...] },
+//   summary: "User started job search in Jan, had 3 interviews...",
+//   emotionalArc: { joy: 0.2 → 0.8 },
+//   keyMoments: [...]
+// }
+```
 
-1. Install pgvector extension: `CREATE EXTENSION vector;`
-2. Embeddings are already being generated and stored
-3. Update retrieval queries to use vector similarity
+### Concept Graph Navigation
 
-This will enable finding memories by **meaning** rather than just recency.
+```javascript
+// Find related concepts
+const related = await conceptSchemaService.getConceptRelationships(
+  userId,
+  "machine learning"
+);
+
+// Returns: [
+//   { target: "artificial intelligence", type: "part_of", strength: 0.9 },
+//   { target: "neural networks", type: "related_to", strength: 0.85 },
+//   { target: "data science", type: "related_to", strength: 0.8 }
+// ]
+```
+
+### User Model Querying
+
+```javascript
+// Get user's beliefs about AI
+const beliefs = await userModelService.getUserBeliefs(
+  userId,
+  "technology",
+  10
+);
+
+// Returns: [
+//   {
+//     statement: "AI will transform healthcare",
+//     confidence: 0.85,
+//     evidence: [memory_ids...],
+//     strength: 0.9
+//   }
+// ]
+```
+
+### Emotional Pattern Analysis
+
+```javascript
+// Get emotional trends
+const trends = await emotionalContinuityService.getEmotionalTrends(
+  userId,
+  30 // days
+);
+
+// Returns: {
+//   dominantEmotions: [{ emotion: "joy", frequency: 42 }],
+//   intensityTrend: "increasing",
+//   patterns: [...]
+// }
+```
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Backend won't start
+### Backend Issues
 
-**Error:** `ECONNREFUSED` or `Connection refused`
-- **Solution:** Make sure PostgreSQL is running
-- **Check:** `psql -U postgres -d aibrain` works
+**Connection Error:**
+- Check PostgreSQL is running
+- Verify database "aibrain" exists
+- Test: `psql -U postgres -d aibrain`
 
-**Error:** `Invalid API key`
-- **Solution:** Verify your OpenAI API key in `.env`
-- **Get key:** https://platform.openai.com/api-keys
+**API Key Error:**
+- Verify OpenAI key in `.env`
+- Get key: https://platform.openai.com/api-keys
 
 ### Stable Diffusion Issues
 
-**Error:** "Could not generate image — SD not running"
-- **Solution:** Start Stable Diffusion Forge with `--api` flag
-- **Check:** Navigate to `http://localhost:7860` in browser
+**Not Running:**
+- Start with `--api` flag
+- Test: http://localhost:7860
 
-**Error:** "Model switch failed"
-- **Solution:** Check your model names with `node check-models.js`
-- **Fix:** Update model names in `sd-service.js`
+**Model Not Found:**
+- Check models: `node check-models.js`
+- Update names in `sd-service.js`
 
-**Slow image generation:**
-- **Reduce dimensions:** Use 512x512 instead of 1024x1024
-- **Use faster models:** Add "quick" or "fast" to prompt for SD 1.5
-- **Check GPU:** Ensure CUDA/DirectML is working
+### Database Errors
 
-### Frontend shows blank screen
+**Table Not Found:**
+- Run: `psql -U postgres -d aibrain -f backend/src/db/schema.sql`
 
-**Error:** Vite build error
-- **Solution:** Delete `node_modules`, run `npm install` again
-- **Check:** Both servers are running (port 3000 and 5173)
+**pgvector Not Working:**
+- Install: `CREATE EXTENSION vector;`
+- Verify: `\dx` in psql
 
-### Database errors
+### Memory/Features Not Working
 
-**Error:** `relation "users" does not exist`
-- **Solution:** Tables weren't created. Check database connection
-- **Manual setup:** Run SQL scripts from backend/src/db/
+**No Memories:**
+- Chat with AI first to create data
+- Need 5-10 conversations for Insights
 
-### Memory/Insights not working
-
-**Error:** "No conversations found"
-- **Solution:** Chat with the AI first to create memories
-- **For Insights:** Need at least 5-10 conversations
-- **For Learning:** Must use Learning Tutor persona
+**Emergence Features:**
+- Background jobs run overnight
+- Force run: `POST /api/control/*/maintenance`
 
 ---
 
 ## 📝 API Documentation
 
-### Main Endpoints
+### Chat Endpoints
 
-**Chat:**
-- `POST /api/chat` - Send message, get response (includes image generation)
-- `GET /api/chat/history/:userId` - Get conversation history
-- `GET /api/chat/personality/:userId` - Get personality traits
+```
+POST /api/chat
+- Send message, get response
+- Body: { userId, personaId, message }
 
-**Personas:**
-- `GET /api/personas/:userId` - List all personas
-- `POST /api/personas/:userId` - Create new persona
-- `POST /api/personas/:userId/switch/:personaId` - Switch active persona
+GET /api/chat/history/:userId
+- Get conversation history
 
-**Insights:**
-- `GET /api/insights/:userId?days=30` - Get comprehensive insights
-- `GET /api/insights/:userId/mood` - Mood analysis
-- `GET /api/insights/:userId/topics` - Topic analysis
+GET /api/chat/personality/:userId
+- Get personality traits
+```
 
-**Learning:**
-- `POST /api/learning/:userId/generate-quiz` - Generate quiz questions
-- `GET /api/learning/:userId/due` - Get items due for review
-- `POST /api/learning/answer/:itemId` - Submit answer
+### Control Panel Endpoints
+
+```
+GET /api/control/performance
+- Performance metrics
+
+GET /api/control/emotions
+- Emotional timeline
+
+GET /api/control/concepts
+- Concept schema overview
+
+GET /api/control/user-model
+- Theory of Mind data
+
+GET /api/control/reflection/history
+- Self-awareness insights
+
+GET /api/control/memory-chains
+- Memory chains list
+
+POST /api/control/reflection/analyze
+- Trigger self-reflection
+
+POST /api/control/memory-chains/build
+- Build memory chains
+```
+
+### Personas Endpoints
+
+```
+GET /api/personas/:userId
+- List all personas
+
+POST /api/personas/:userId
+- Create new persona
+
+POST /api/personas/:userId/switch/:personaId
+- Switch active persona
+```
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions welcome! Follow these steps:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Fork repository
+2. Create feature branch
+3. Commit changes
+4. Push to branch
+5. Open Pull Request
 
-### Development Guidelines
-
+**Development Guidelines:**
 - Follow existing code style
-- Add comments for complex logic
-- Test changes thoroughly
-- Update README if adding features
+- Comment complex logic
+- Test thoroughly
+- Update documentation
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) file
 
 ---
 
 ## 🙏 Acknowledgments
 
-- **OpenAI** - GPT-4 and embeddings API
-- **Stable Diffusion / lllyasviel** - Forge WebUI and image generation
-- **PostgreSQL** - Robust database system
+- **OpenAI** - GPT-4 and embeddings
+- **pgvector** - Vector similarity search
+- **Stable Diffusion** - Image generation
+- **PostgreSQL** - Robust database
 - **React** - Frontend framework
-- **Vite** - Lightning-fast build tool
-- **highlight.js** - Syntax highlighting
-- **marked** - Markdown parsing
+- **Node.js** - Backend runtime
 
 ---
 
@@ -590,7 +789,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Made with ❤️ and 🧠**
+**🧠 Built with Intelligence, Powered by Emergence 🚀**
 
 [⭐ Star this repo](https://github.com/odiumxp/ai-brain) | [🐛 Report Bug](https://github.com/odiumxp/ai-brain/issues) | [💡 Request Feature](https://github.com/odiumxp/ai-brain/issues)
 

@@ -86,6 +86,52 @@ CREATE TABLE personality_state (
 CREATE INDEX idx_personality_user ON personality_state(user_id);
 
 -- ============================================================================
+-- EMOTIONAL TIMELINE (Amygdala & Limbic System - Emotional Tracking)
+-- ============================================================================
+CREATE TABLE emotional_timeline (
+    emotion_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID REFERENCES users(user_id) ON DELETE CASCADE,
+    timestamp TIMESTAMP DEFAULT NOW(),
+    emotion_type VARCHAR(50) NOT NULL, -- joy, sadness, anger, fear, surprise, disgust, trust, anticipation
+    intensity FLOAT CHECK (intensity BETWEEN 0 AND 10),
+    confidence FLOAT CHECK (confidence BETWEEN 0 AND 1) DEFAULT 0.8,
+    trigger_event JSONB, -- what caused this emotion
+    context_memory_id UUID REFERENCES episodic_memory(memory_id), -- link to memory
+    physiological_markers JSONB, -- heart rate, stress levels, etc. (simulated)
+    emotional_triggers JSONB, -- keywords/topics that triggered emotion
+    duration_minutes INT, -- how long emotion lasted
+    resolution_status VARCHAR(20) DEFAULT 'active', -- active, resolved, suppressed
+    empathy_calibration JSONB, -- how AI should respond
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Indexes for emotional analysis
+CREATE INDEX idx_emotional_user ON emotional_timeline(user_id);
+CREATE INDEX idx_emotional_timestamp ON emotional_timeline(timestamp DESC);
+CREATE INDEX idx_emotional_type ON emotional_timeline(emotion_type);
+CREATE INDEX idx_emotional_intensity ON emotional_timeline(intensity DESC);
+CREATE INDEX idx_emotional_memory ON emotional_timeline(context_memory_id);
+
+-- ============================================================================
+-- EMOTIONAL PATTERNS (Learned emotional responses)
+-- ============================================================================
+CREATE TABLE emotional_patterns (
+    pattern_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID REFERENCES users(user_id) ON DELETE CASCADE,
+    emotion_type VARCHAR(50) NOT NULL,
+    trigger_patterns JSONB, -- common triggers for this emotion
+    response_patterns JSONB, -- how user typically responds
+    empathy_strategies JSONB, -- effective empathy approaches
+    frequency_count INT DEFAULT 1,
+    last_observed TIMESTAMP DEFAULT NOW(),
+    confidence_score FLOAT CHECK (confidence_score BETWEEN 0 AND 1) DEFAULT 0.5,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX idx_emotional_patterns_user ON emotional_patterns(user_id);
+CREATE INDEX idx_emotional_patterns_type ON emotional_patterns(emotion_type);
+
+-- ============================================================================
 -- DECISION PATTERNS
 -- ============================================================================
 CREATE TABLE decision_patterns (

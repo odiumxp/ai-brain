@@ -23,6 +23,19 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
+.insights-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.generated-time {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
 .insights-header h1 {
   font-size: 24px;
   font-weight: 600;
@@ -68,7 +81,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Insights Grid */
@@ -388,13 +403,13 @@
     border-radius: 0;
     padding: 20px;
   }
-  
+
   .insights-header {
     flex-direction: column;
     gap: 16px;
     align-items: stretch;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }

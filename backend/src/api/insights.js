@@ -11,9 +11,9 @@ router.get('/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
         const days = parseInt(req.query.days) || 30;
-        
+
         const insights = await insightsService.getComprehensiveInsights(userId, days);
-        
+
         res.json(insights);
     } catch (error) {
         console.error('Get insights error:', error);
@@ -29,9 +29,9 @@ router.get('/:userId/topics', async (req, res) => {
     try {
         const { userId } = req.params;
         const days = parseInt(req.query.days) || 30;
-        
+
         const topics = await insightsService.getTopicsAnalysis(userId, days);
-        
+
         res.json(topics);
     } catch (error) {
         console.error('Get topics error:', error);
@@ -47,9 +47,9 @@ router.get('/:userId/mood', async (req, res) => {
     try {
         const { userId } = req.params;
         const days = parseInt(req.query.days) || 30;
-        
+
         const mood = await insightsService.getMoodAnalysis(userId, days);
-        
+
         res.json(mood);
     } catch (error) {
         console.error('Get mood error:', error);
@@ -64,9 +64,10 @@ router.get('/:userId/mood', async (req, res) => {
 router.get('/:userId/patterns', async (req, res) => {
     try {
         const { userId } = req.params;
-        
-        const patterns = await insightsService.getBehaviorPatterns(userId);
-        
+        const days = parseInt(req.query.days) || 30;
+
+        const patterns = await insightsService.getBehaviorPatterns(userId, days);
+
         res.json(patterns);
     } catch (error) {
         console.error('Get patterns error:', error);
@@ -81,9 +82,10 @@ router.get('/:userId/patterns', async (req, res) => {
 router.get('/:userId/recommendations', async (req, res) => {
     try {
         const { userId } = req.params;
-        
-        const recommendations = await insightsService.getRecommendations(userId);
-        
+        const days = parseInt(req.query.days) || 30;
+
+        const recommendations = await insightsService.getRecommendations(userId, days);
+
         res.json(recommendations);
     } catch (error) {
         console.error('Get recommendations error:', error);
@@ -98,9 +100,9 @@ router.get('/:userId/recommendations', async (req, res) => {
 router.get('/:userId/stats', async (req, res) => {
     try {
         const { userId } = req.params;
-        
+
         const stats = await insightsService.getConversationStats(userId);
-        
+
         res.json(stats);
     } catch (error) {
         console.error('Get stats error:', error);

@@ -7,6 +7,8 @@ const gptService = require('../services/gpt-service');
 const contextBuilder = require('../services/context-builder');
 const personaService = require('../services/persona-service');
 const sdService = require('../services/sd-service');
+const workingMemoryService = require('../services/working-memory-service');
+const emotionalContinuityService = require('../services/emotional-continuity-service');
 
 /**
  * POST /api/chat
@@ -31,9 +33,9 @@ router.post('/', async (req, res) => {
         // 1. Retrieve relevant memories (filtered by persona if exists)
         const searchQuery = message || 'image analysis';
         const memories = await memoryService.retrieveRelevantMemories(
-            userId, 
-            searchQuery, 
-            15, 
+            userId,
+            searchQuery,
+            15,
             activePersona ? activePersona.persona_id : null
         );
         console.log(`📚 Retrieved ${memories.length} relevant memories`);
@@ -41,6 +43,15 @@ router.post('/', async (req, res) => {
         // 2. Get current personality state
         const personality = await personalityService.getPersonality(userId);
         console.log(`🎭 Loaded personality with ${Object.keys(personality).length} traits`);
+
+        // 2.5. Get working memory context (current conversation topics/goals)
+        const workingMemoryContext = await workingMemoryService.getWorkingMemoryContext(
+            userId,
+            activePersona ? activePersona.persona_id : null
+        );
+        if (workingMemoryContext) {
+            console.log(`💭 Working Memory: Active conversation context loaded`);
+        }
 
         // 3. If an image (data URL) was provided, save it to disk and convert to a public URL
         let imageToSend = image;
@@ -149,11 +160,13 @@ router.post('/', async (req, res) => {
             }
         }
 
-        // 4. Build context with persona system prompt
-        const context = contextBuilder.buildContext(
-            personality, 
-            memories, 
-            activePersona ? activePersona.system_prompt : null
+        // 4. Build context with persona system prompt, working memory, AND memory chains
+        const context = await contextBuilder.buildContext(
+            personality,
+            memories,
+            activePersona ? activePersona.system_prompt : null,
+            workingMemoryContext, // Add working memory context
+            userId // Add userId for memory chains
         );
 
         // 5. Call GPT-4 API
@@ -163,24 +176,41 @@ router.post('/', async (req, res) => {
 
         // 6. Store conversation in memory with persona_id
         const memoryText = image ? `${message || 'Image analysis'}: ${image.name}` : message;
-        memoryService.storeMemory(
-            userId, 
-            memoryText, 
-            response, 
+        const memoryId = await memoryService.storeMemory(
+            userId,
+            memoryText,
+            response,
             activePersona ? activePersona.persona_id : null
-        )
-            .then(memoryId => {
-                console.log(`💾 Stored memory ${memoryId}`);
+        );
+        console.log(`💾 Stored memory ${memoryId}`);
+
+        // 6.5. Detect emotions from the conversation (async, don't wait)
+        const fullConversation = `${memoryText}\nAI: ${response}`;
+        emotionalContinuityService.detectEmotionsFromText(fullConversation, userId, memoryId)
+            .then(emotions => {
+                if (emotions.emotions && emotions.emotions.length > 0) {
+                    console.log(`🤗 Detected ${emotions.emotions.length} emotions: ${emotions.emotions.map(e => e.type).join(', ')}`);
+                }
             })
             .catch(err => {
-                console.error('Error storing memory:', err);
+                console.error('Error detecting emotions:', err);
             });
 
-        // 6. Update personality (async, don't wait)
+        // 7. Update personality (async, don't wait)
         personalityService.updatePersonality(userId)
             .catch(err => {
                 console.error('Error updating personality:', err);
             });
+
+        // 7. Update working memory (async, don't wait)
+        workingMemoryService.updateWorkingMemory(
+            userId,
+            memoryText,
+            response,
+            activePersona ? activePersona.persona_id : null
+        ).catch(err => {
+            console.error('Error updating working memory:', err);
+        });
 
         // Return response
         res.json({
@@ -222,7 +252,7 @@ router.post('/stream', async (req, res) => {
         // Retrieve context
         const memories = await memoryService.retrieveRelevantMemories(userId, message, 15); // Increased to 15
         const personality = await personalityService.getPersonality(userId);
-        const context = contextBuilder.buildContext(personality, memories);
+        const context = await contextBuilder.buildContext(personality, memories, null, null, userId);
 
         // Stream response
         let fullResponse = '';
@@ -289,7 +319,7 @@ router.get('/history/:userId', async (req, res) => {
 router.get('/memories/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
-        
+
         const { query } = require('../db/connection');
         const result = await query(`
             SELECT
@@ -305,11 +335,11 @@ router.get('/memories/:userId', async (req, res) => {
             WHERE user_id = $1
             ORDER BY timestamp DESC
         `, [userId]);
-        
+
         res.json({
             memories: result.rows
         });
-        
+
     } catch (error) {
         console.error('Memories error:', error);
         res.status(500).json({ error: 'Failed to fetch memories' });
@@ -323,16 +353,16 @@ router.get('/memories/:userId', async (req, res) => {
 router.get('/memory-stats/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
-        
+
         const stats = await memoryService.getMemoryStats(userId);
-        
+
         res.json({
             total: parseInt(stats.total_memories) || 0,
             avgImportance: parseFloat(stats.avg_importance) || 0,
             totalAccesses: parseInt(stats.total_accesses) || 0,
             lastMemory: stats.last_memory
         });
-        
+
     } catch (error) {
         console.error('Memory stats error:', error);
         res.status(500).json({ error: 'Failed to fetch memory stats' });
@@ -346,15 +376,15 @@ router.get('/memory-stats/:userId', async (req, res) => {
 router.delete('/memories/:memoryId', async (req, res) => {
     try {
         const { memoryId } = req.params;
-        
+
         const { query } = require('../db/connection');
         await query(`
             DELETE FROM episodic_memory
             WHERE memory_id = $1
         `, [memoryId]);
-        
+
         res.json({ success: true });
-        
+
     } catch (error) {
         console.error('Delete memory error:', error);
         res.status(500).json({ error: 'Failed to delete memory' });
@@ -369,16 +399,16 @@ router.patch('/memories/:memoryId/pin', async (req, res) => {
     try {
         const { memoryId } = req.params;
         const { pinned } = req.body;
-        
+
         const { query } = require('../db/connection');
         await query(`
             UPDATE episodic_memory
             SET pinned = $1
             WHERE memory_id = $2
         `, [pinned, memoryId]);
-        
+
         res.json({ success: true, pinned });
-        
+
     } catch (error) {
         console.error('Pin memory error:', error);
         res.status(500).json({ error: 'Failed to update memory' });
@@ -392,13 +422,13 @@ router.patch('/memories/:memoryId/pin', async (req, res) => {
 router.get('/personality/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
-        
+
         const personality = await personalityService.getPersonality(userId);
-        
+
         res.json({
             traits: personality
         });
-        
+
     } catch (error) {
         console.error('Personality error:', error);
         res.status(500).json({ error: 'Failed to fetch personality' });

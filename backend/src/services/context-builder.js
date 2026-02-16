@@ -1,17 +1,78 @@
-// Context Builder - With Persona Support
+// Context Builder - With Persona Support, Memory Chains, User Model, and Emotional Continuity
 const { formatDistanceToNow } = require('date-fns');
+const memoryChainsService = require('./memory-chains-service');
+const userModelService = require('./user-model-service');
+const emotionalContinuityService = require('./emotional-continuity-service');
 
 /**
- * Build context - with optional persona system prompt
+ * Build context - with optional persona system prompt, working memory, and memory chains
  */
-function buildContext(personality, memories, personaSystemPrompt = null) {
+async function buildContext(personality, memories, personaSystemPrompt = null, workingMemoryContext = null, userId = null) {
     let context = '';
-    
-    // Start with persona system prompt if provided
-    if (personaSystemPrompt) {
-        context = personaSystemPrompt + '\n\n';
+
+    // Add working memory context FIRST - this is the most important current context
+    if (workingMemoryContext) {
+        context += `⚠️ CRITICAL: CURRENT CONVERSATION CONTEXT - PAY CLOSE ATTENTION ⚠️\n${workingMemoryContext}\n\n`;
     }
-    
+
+    // Add relevant memory chains for narrative understanding
+    if (userId) {
+        try {
+            const relevantChains = await memoryChainsService.findRelevantChains(userId, null, 3);
+            if (relevantChains.length > 0) {
+                context += `📚 MEMORY CHAINS - NARRATIVE CONTEXT:\n`;
+                relevantChains.forEach(chain => {
+                    context += `• ${chain.chain_name}: ${chain.chain_summary}\n`;
+                });
+                context += `\n`;
+            }
+        } catch (error) {
+            console.error('Error retrieving memory chains for context:', error);
+        }
+    }
+
+    // Add user model context for theory of mind
+    if (userId) {
+        try {
+            const userModel = await userModelService.getUserModel(userId);
+            if (userModel) {
+                const userModelContext = userModelService.generateUserModelContext(userModel);
+                if (userModelContext) {
+                    context += userModelContext;
+                }
+            }
+        } catch (error) {
+            console.error('Error retrieving user model for context:', error);
+        }
+    }
+
+    // Add emotional context for empathy and emotional awareness
+    if (userId) {
+        try {
+            const emotionalContext = await emotionalContinuityService.generateEmotionalContext(userId);
+            if (emotionalContext) {
+                context += emotionalContext;
+            }
+        } catch (error) {
+            console.error('Error retrieving emotional context:', error);
+        }
+    }
+
+    // Then add persona system prompt if provided
+    if (personaSystemPrompt) {
+        context += personaSystemPrompt + '\n\n';
+    }
+
+    // Add working memory context FIRST - this is the most important current context
+    if (workingMemoryContext) {
+        context += `⚠️ CRITICAL: CURRENT CONVERSATION CONTEXT - PAY CLOSE ATTENTION ⚠️\n${workingMemoryContext}\n\n`;
+    }
+
+    // Then add persona system prompt if provided
+    if (personaSystemPrompt) {
+        context += personaSystemPrompt + '\n\n';
+    }
+
     // If no memories yet - genuine blank slate
     if (!memories || memories.length === 0) {
         context += `You have persistent memory - every conversation is saved and you can recall past interactions.`;
@@ -50,7 +111,10 @@ Guidelines:
 
 Example: If the user says "generate an image of a cat in space", you might respond:
 Here's a cosmic cat for you!
-[GENERATE_IMAGE: a fluffy orange tabby cat floating in outer space, stars and nebulae in the background, Earth visible below, photorealistic, dramatic lighting, cinematic composition, 8k, highly detailed]`;
+[GENERATE_IMAGE: a fluffy orange tabby cat floating in outer space, stars and nebulae in the background, Earth visible below, photorealistic, dramatic lighting, cinematic composition, 8k, highly detailed]
+
+[FINAL REMINDER]
+Always prioritize the CURRENT CONVERSATION CONTEXT at the top of this message. For vague user questions, refer to the active topics listed there.`;
 
     return context;
 }
